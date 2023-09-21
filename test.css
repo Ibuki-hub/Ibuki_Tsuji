@@ -1,0 +1,119 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 200.0px auto;
+    color: rgb(0, 0, 0);
+    background-color: aquamarine;
+}
+
+#navi {
+    cursor: wait;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5em;
+    background-color: #ffcc00;
+}
+
+q {
+    quotes: '「' '」';
+}
+
+q::before {
+    content: open-quote;
+}
+
+q::after {
+    content: close-quote;
+}
+
+#tit {
+    padding: 20px;
+    font-family: sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+table#bb {
+    border-collapse: separate;
+}
+
+h1 {
+    margin: auto;
+}
+
+span.box {
+    display: flex;
+    width: 300px;
+    border: dashed #dddddd;
+
+    section {
+        width: 100px;
+        height: 100px;
+    }
+
+    #child1 {
+        flex: 3;
+        background-color: azure;
+    }
+
+    #child2 {
+        order: -1;
+        flex: 2;
+        background-color: #ff9900;
+    }
+
+    #child3 {
+        flex: 1;
+        background-color: #ff9900;
+    }
+}
+
+#nm {
+    text-align: right;
+}
+
+#en {
+    text-transform: capitalize;
+}
+
+.index a:link {
+    color: #ff6600;
+}
+
+.index a:visited {
+    color: #000000;
+}
+
+.index a:hover {
+    color: #ff9900;
+}
+
+#pic {
+    line-height: 1.5;
+}
+
+div {
+    width: 150px;
+    border: 1px solid black;
+    resize: horizontal;
+    overflow: hidden;
+}
+
+#myid {
+    padding: 0.5em;
+    border: dotted 8px #ff0000;
+    border-radius: 15px;
+}
+
+tr:nth-child(odd) {
+    background-color: #caf3de;
+}
+
+td {
+    padding: 2px 50px;
+}

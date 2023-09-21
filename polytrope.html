@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<div class="toumei">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="nofollow,noarchive" />
+    <link rel="stylesheet" href="manubar.css">
+    <link rel="stylesheet" href="ibuki.css">
+    <link rel="stylesheet" href="polytrope.css">
+    <script src="menubar.js"></script>
+    <script src="dwarf.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { equationNumbers: { autoNumber: "AMS" }},
+            tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+            },
+            "HTML-CSS": { matchFontHeight: false },
+            displayAlign: "left",
+            displayIndent: "2em"
+        });
+    </script>
+    <title>Ibuki's Presentation</title>
+</head>
+<body>
+    <!--メニューバー-->
+    <div class="menubar">
+        <a href="ibuki.html">ホーム</a>
+        <a href="history.html">経歴</a>
+        <a href="presentation.html">発表</a>
+        <a href="gallery.html">ギャラリー</a>
+
+        <a class="menuicon">Menu</a>
+    </div>
+
+    
+    <h1>
+        &#36795;&#xE0100;
+        <ruby>勇吹樹<rp>(</rp><rt>いぶき</rt><rp>)</rp></ruby><br>
+        Tsuji Ibuki
+    </h1>
+    <div class="menubar_main">
+        <a href="ibuki.html">ホーム</a>
+        <a href="history.html">経歴</a>
+        <a href="presentation.html">発表</a>
+        <a href="gallery.html">ギャラリー</a>
+    </div>
+
+    <h2 id="pol">ポリトロープ球</h2>
+    <p class="sum" class="Q1" id="Q1" onmouseover="SetBorder('Q1','darkgreen','white')" onmouseout="SetBorder('Q1','white','black')">
+        ポリトロープ関係
+        \[
+            P=K\rho^{1+1/n}
+        \]
+        から星内部の基礎方程式2つ(静水圧平衡・質量座標)を解くことでレーン=エムデン方程式
+        \[
+            \frac{1}{\xi^2}\frac{d}{d\xi}\left(\xi^2\frac{d\theta}{d\xi}\right)=-\theta^n
+        \]
+        を導きました。(<strong>無次元化</strong>$r=\alpha\xi,\rho=\beta\theta^n$)
+
+    </p>
+    ポリトロープ関係とは圧力$P$、密度$\rho$の間に定数$K$を用いて
+    <p class="math">
+        \[
+        P=K\rho^{1+1/n}
+        \]
+    </p>
+    と書ける関係のことです。<br>
+    例えば理想気体の断熱変化ではポアソンの関係式$PV^{\gamma}=K$から$P=K\rho^{\gamma}$が成り立つのでポリトロープ関係が成り立っていると言えます。<br>
+    一方で理想気体の状態方程式は$PV=NkT$より圧力が温度にも依存するためポリトロープ関係が成り立っているとは言えません。<br>
+    　さて、星内部の基礎方程式の前半2つは
+    <p class="math">
+        \[
+        \frac{dP}{dr}=-\frac{GM_r\rho}{r^2}\\
+        \frac{dM_r}{dr}=4\pi r^2\rho
+        \]
+    </p>
+    で表されます。ここで変数$P,M_r,\rho$は$r$の従属変数となります。今回の数値計算では各セルごとの$r$に対するこれら3つの変数の値を求めることが目的です。
+    しかし式2つに対して3つあるのでこのままでは解くことができません。
+    そこで先ほどのポリトロープ関係を使うと式3つに対して3つの変数となるので解くことができるのです。星内部の基礎方程式の後半2つは温度や光度などさらに変数が出てくるのでここでは考えていません。<br>
+    　さらに式の<strong>無次元化</strong>を行います。無次元化をすることで星の大きさにとらわれず数値計算をすることが容易になります。例えば太陽の質量は
+    $2*10^{33}[\text{g}]$ですが、こんなに桁の大きいものをパソコンの中で動かすのは非常に困難になります。ここで太陽質量の変動を調べたいとすると太陽の質量$M_{sun}$
+    をそのまま使うのではなくそれを$2*10^{33}[\text{g}]$で割ったものを使うとおおよそ1のあたりで変動することになるので計算がしやすくなります。<br>
+    　今回は$r=\alpha\xi,\rho=\beta\theta^n$として
+    無次元量$\xi,\theta$を取り出すことができます。$\alpha,\beta$はそれぞれ距離や密度の次元を持ち、星のどこかの代表値です。<br>
+    　それでは3つの式を組み合わせていきます。
+    <p class="math">
+        \[
+            \frac{d}{dr}\left(-\frac{r^2}{G\rho}\frac{dP}{dr}\right)=4\pi r^2\rho \qquad\text{(基礎方程式2つを組み合わせる)}\\
+            \to-\frac{K}{G}\frac{d}{dr}\left(\frac{r^2}{\rho}\frac{d\rho^{1+1/n}}{dr}\right)=4\pi r^2\rho\\
+            \to-\frac{K(1+1/n)}{4\pi G}\frac{d}{dr}\left(r^2\rho^{-1+1/n}\frac{d\rho}{dr}\right)=r^2\rho \qquad\text{(ポリトロープ関係を代入)}\\
+            \to-\frac{K(1+1/n)\beta^{-1+1/n}}{4\pi G}\frac{d}{dr}\left(r^2\theta^{1-n}\frac{d\theta^n}{dr}\right)=r^2\theta^n \qquad\text{($\rho$の無次元化)}\\
+            \to-\frac{K(1+n)\beta^{-1+1/n}}{4\pi G}\frac{d}{dr}\left(r^2\frac{d\theta}{dr}\right)=r^2\theta^n\\
+            \to-\frac{K(1+n)\beta^{-1+1/n}}{4\pi G\alpha^2}\frac{d}{d\xi}\left(\xi^2\frac{d\theta}{d\xi}\right)=\xi^2\theta^n \qquad\text{(rの無次元化)}\\
+            \to\frac{1}{\xi^2}\frac{d}{d\xi}\left(\xi^2\frac{d\theta}{d\xi}\right)=-\theta^n \qquad\text{($\alpha^2=\frac{K(1+n)\beta^{-1+1/n}}{4\pi G\alpha^2}$とする。(代表値をその定数値とおく。))}\\
+        \]
+    </p>
+    　以上から「レーン=エムデン方程式」を導くことができました。一般に解析解を求めることはできませんが、数値的にこれを解くことで変数がどのように時間発展するかを求めることができます。<br>
+    　下図は実際に$n=1.5,2.0,3.0$でこの方程式を解いたときの$\xi,\theta$のグラフです。<br>
+    <img src="emden.png" id="emden">
+    <hr>
+    <h2 id="gyro">回転速度と角運動量の関係(ポリトロープ球)</h2>
+    <p class="sum" class="Q1" id="Q2" onmouseover="SetBorder('Q2','darkgreen','white')" onmouseout="SetBorder('Q2','white','black')">
+        回転速度$v$と角運動量$J_{tot}$の関係を<br>
+        ポリトロープ関係、レーン=エムデン方程式、回転半径$H$から
+        \[
+        J_{tot}=\left(\frac{H}{R}\right)^2MRv
+        \]
+        として求めました。
+    </p>
+    　光のドップラー効果などによって観測された星の回転速度と角運動量の関係をポリトロープ関係を仮定して解いてみます。ポリトロープ関係は必ずしも成り立っているわけではなく、星内部の場所に依って
+    nの値が変化する場合(相対論/非相対論)もありますがここでは簡単にnが一定値をとるとして計算を進めます。<br>
+    　今回必ずしも星が剛体回転をしている必要はありません。その代わり「回転半径(gyration radii)」$H$を導入します。これはある物体の
+    慣性モーメントが$I$のとき、その物体を質点に置き換えたときの回転半径に当たります。質点の回転では、慣性モーメントは回転している軌跡を結んだときの円の半径に相当します。すなわち
+    <p class="math">
+        \[
+        H^2=\frac{I}{M}\\
+        \]
+    </p>
+    と表すことができます。密度$\rho$の球の慣性モーメントは
+    <p class="math">
+        \begin{eqnarray}
+            I&=&\int\rho (x^2+y^2)dxdydz\\
+            &=&\frac{2}{3}\int\rho r^2dxdydz\\
+            &=&\frac{2}{3}\int d\phi\int \sin\theta d\theta \int\rho r^4
+        \end{eqnarray}
+    </p>
+    と書けるので
+    <p class="math">
+        \[
+        H=\left(\frac{8\pi}{3M}\int^R_0\rho r^4dr\right)^{1/2}
+        \]
+    </p>
+    と求められます。ここからポリトロープ関係を代入して求めていくのですがゴールを先に見ておきます。観測される回転速度は星表面での角速度$\omega$を用いて
+    <p class="math">
+        \[
+        v=\omega R=\frac{J_{tot}}{I}R=\frac{J_{tot}}{MH^2}R
+        \]
+    </p>
+    という関係を導くことができます。したがって$H$を求めることができれば$v$から星内部の合計角運動量$J_{tot}$を調べることができます。<br>
+    　それではポリトロープ関係$P=K\rho^{1+1/n}$、無次元変数$r=\alpha\xi, \rho=\beta\theta^n$を代入していきます。前章で導いた「レーン=エムデン方程式」も使います。<br>
+    この計算の途中式を全て書くと長くなるので飛ばし飛ばし書いていきます。
+    <p class="math">
+        \begin{eqnarray}
+            \left(\frac{H}{R}\right)^2 &=& \frac{8\pi}{3MR^2}\int^R_0\rho r^4 dr\\
+            &=& \frac{8\pi\alpha^5\beta}{3MR^2}\int^{\xi_1}_0\theta^n\xi^4 d\xi\\
+            &=& -\frac{8\pi\alpha^5\beta}{3MR^2}\int^{\xi_1}_0 \xi^2\frac{d}{d\xi}\left(\xi^2\frac{d\theta}{d\xi}\right) d\xi \qquad\text{(レーン=エムデン方程式を代入)}\\
+            &=& -\frac{8\pi\xi^2_1\alpha^3\beta}{3M}\left(\frac{d\theta}{d\xi}\right)_{\xi=\xi_1}\left[1+\frac{6}{\xi^4(d\theta/d\xi)_{\xi=\xi_1}}\int^{\xi_1}_0\xi^2\theta d\xi\right] \qquad\text{(部分積分を2回実行)}\\
+            &=& \frac{2}{3}\left[1+\frac{6}{\xi^4(d\theta/d\xi)_{\xi=\xi_1}}\int^{\xi_1}_0\xi^2\theta d\xi\right]\\
+            && \qquad(\because M=\int 4\pi r^2\rho dr=\cdots=-4\pi R^2\alpha\beta\left(\frac{d\theta}{d\xi}\right)_{\xi=\xi_1})
+        \end{eqnarray}
+    </p>
+    　ここからは数値的に解くことになります。前章で求めた$\xi,\theta$の関係を入れて解いてやれば下表のように$(H/R)^2$を求められるので回転速度と角運動量の関係を先程見たように導くことができます。
+    \begin{array}{l|c}
+        \hline
+        n=1.5 & 0.20502\\
+        \hline
+        n=2.0 & 0.15704\\
+        \hline
+        n=3.0 & 0.07583\\ 
+        \hline
+    \end{array}
+    例：非相対論のとき
+    <p class="math">
+        \[
+        J_{tot}=0.20502MRv
+        \]
+    </p>
+    　回転速度以外にも質量や半径の情報が必要になりますがそれらはスペクトルや視差(parallax)、重力赤方偏移から推定することができます。<br>
+    　ちなみに非相対論のとき$n=1.5$、相対論のとき$n=3.0$となるのはそれぞれのエネルギーの表式が$e=p^2/2m, e=cp$でp(運動量)の何乗に比例しているかに依存しています。導出はしませんが
+    この表式から分配関数を求めると比熱を出せるのでそこから$n$を決めることができます。<br>
+    ここまでお読みいただきありがとうございました。お疲れ様でした。
+    <footer>
+        <hr>
+        <p><small>東北大学理学部宇宙地球物理学科天文学コース　&#36795;&#xE0100;　勇吹樹</small></p>
+        <p><small>mail: tsuji.ibuki.q1○tohoku.ac.jp (○を@に換えてください。)</small></p>
+        <script>
+            <!--
+                gmt = new Date();
+                document.write("Last update:",document.lastModified);
+                document.write("<br>");
+                document.write("現在時刻:",gmt.toLocaleString());
+            //-->
+        </script>
+    </footer>
+</div>
+</body>
+</html>
