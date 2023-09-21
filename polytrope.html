@@ -145,12 +145,12 @@
     この計算の途中式を全て書くと長くなるので飛ばし飛ばし書いていきます。
     <p class="math">
         \begin{eqnarray}
-            \left(\frac{H}{R}\right)^2 &=& \frac{8\pi}{3MR^2}\int^R_0\rho r^4 dr\\
-            &=& \frac{8\pi\alpha^5\beta}{3MR^2}\int^{\xi_1}_0\theta^n\xi^4 d\xi\\
-            &=& -\frac{8\pi\alpha^5\beta}{3MR^2}\int^{\xi_1}_0 \xi^2\frac{d}{d\xi}\left(\xi^2\frac{d\theta}{d\xi}\right) d\xi \qquad\text{(レーン=エムデン方程式を代入)}\\
-            &=& -\frac{8\pi\xi^2_1\alpha^3\beta}{3M}\left(\frac{d\theta}{d\xi}\right)_{\xi=\xi_1}\left[1+\frac{6}{\xi^4(d\theta/d\xi)_{\xi=\xi_1}}\int^{\xi_1}_0\xi^2\theta d\xi\right] \qquad\text{(部分積分を2回実行)}\\
-            &=& \frac{2}{3}\left[1+\frac{6}{\xi^4(d\theta/d\xi)_{\xi=\xi_1}}\int^{\xi_1}_0\xi^2\theta d\xi\right]\\
-            && \qquad(\because M=\int 4\pi r^2\rho dr=\cdots=-4\pi R^2\alpha\beta\left(\frac{d\theta}{d\xi}\right)_{\xi=\xi_1})
+            \left(\frac{H}{R}\right)^2 &=& \frac{8\pi}{3MR^2}\int^R_0\rho r^4 dr\notag\\
+            &=& \frac{8\pi\alpha^5\beta}{3MR^2}\int^{\xi_1}_0\theta^n\xi^4 d\xi\notag\\
+            &=& -\frac{8\pi\alpha^5\beta}{3MR^2}\int^{\xi_1}_0 \xi^2\frac{d}{d\xi}\left(\xi^2\frac{d\theta}{d\xi}\right) d\xi \qquad\text{(レーン=エムデン方程式を代入)}\notag\\
+            &=& -\frac{8\pi\xi^2_1\alpha^3\beta}{3M}\left(\frac{d\theta}{d\xi}\right)_{\xi=\xi_1}\left[1+\frac{6}{\xi^4(d\theta/d\xi)_{\xi=\xi_1}}\int^{\xi_1}_0\xi^2\theta d\xi\right] \qquad\text{(部分積分を2回実行)}\notag\\
+            &=& \frac{2}{3}\left[1+\frac{6}{\xi^4(d\theta/d\xi)_{\xi=\xi_1}}\int^{\xi_1}_0\xi^2\theta d\xi\right]\notag\\
+            && \qquad(\because M=\int 4\pi r^2\rho dr=\cdots=-4\pi R^2\alpha\beta\left(\frac{d\theta}{d\xi}\right)_{\xi=\xi_1})\notag
         \end{eqnarray}
     </p>
     　ここからは数値的に解くことになります。前章で求めた$\xi,\theta$の関係を入れて解いてやれば下表のように$(H/R)^2$を求められるので回転速度と角運動量の関係を先程見たように導くことができます。
