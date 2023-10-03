@@ -1,6 +1,7 @@
 function pw(){
   PRO = prompt("パスワードを入力して「ok」ボタンを押してください。","");
-  if(!(PRO=="" || PRO==null)){location.href='PRO'}
+  const url = '/drive.google.com/drive/folders/' + 'PRO'
+  if(!(PRO=="" || PRO==null)){location.href='url'}
   else{alert("なにも入力されていないか、[Cancel]ボタンが押されました。")}
 }
 
