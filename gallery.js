@@ -1,6 +1,6 @@
 function pw(){
   PRO = prompt("パスワードを入力して「ok」ボタンを押してください。","");
-  if(!(PRO=="" || PRO==null)){location.href=PRO}
+  if(!(PRO=="" || PRO==null)){location.href='PRO'}
   else{alert("なにも入力されていないか、[Cancel]ボタンが押されました。")}
 }
 
