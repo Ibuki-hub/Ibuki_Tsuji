@@ -1,6 +1,6 @@
 function pw(){
   var PRO = prompt("パスワードを入力して「ok」ボタンを押してください。","");
-  if(!(PRO=="" || PRO==null)){location.href='https://drive.google.com/drive/folders/'+ PRO}
+  if(!(PRO=="" || PRO==null)){location.href='https://drive.google.com/drive/folders/1dPt0Ay90KQ9EGzDBE'+ PRO + 'J_veAgKPykTnx?usp=sharing/'}
   else{alert("なにも入力されていないか、[Cancel]ボタンが押されました。")}
 }
 
