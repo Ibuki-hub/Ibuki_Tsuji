@@ -13,3 +13,8 @@ ul li, ol li {
   list-style-type: none!important;/*ポチ消す*/
   font-weight: bold;
 }
+
+ul li p {
+  font-weight: normal;
+  border-left: none;
+}
